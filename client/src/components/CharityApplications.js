@@ -44,12 +44,31 @@ const CharityApplications = () => {
     setFormData((prevData) => ({ ...prevData, target_amount: amount }));
   };
 
+  const validateImageUrl = (url) => {
+    const urlRegex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+    return urlRegex.test(url);
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+
+    if (name === "image") {
+      if (!validateImageUrl(value)) {
+        setErrorMessages((prev) => ({
+          ...prev,
+          image: "Please enter a valid URL for the image.",
+        }));
+      } else {
+        setErrorMessages((prev) => {
+          const { image, ...rest } = prev;
+          return rest;
+        });
+      }
+    }
   };
 
   const validateEmail = (email) => {
@@ -83,6 +102,10 @@ const CharityApplications = () => {
 
   const handleEmailBlur = () => {
     validateEmail(formData.email);
+  };
+
+  const handleImageBlur = () => {
+    validateImageUrl(formData.image);
   };
 
   const handlePasswordBlur = () => {
@@ -122,8 +145,11 @@ const CharityApplications = () => {
     ) {
       newErrorMessages.target_amount = "Please set a target amount.";
     } else if (currentStep === 4) {
-      if (!formData.image)
+      if (!formData.image) {
         newErrorMessages.image = "Please provide an image URL.";
+      } else if (!validateImageUrl(formData.image)) {
+        newErrorMessages.image = "Please enter a valid URL for the image.";
+      }
       if (!formData.summary)
         newErrorMessages.summary = "Please provide a summary.";
     }
@@ -450,10 +476,11 @@ const CharityApplications = () => {
                 <div className="form-group">
                   <input
                     className="input-group"
-                    id="image"
+                    id ="image"
                     name="image"
                     value={formData.image}
                     onChange={handleInputChange}
+                    onBlur={handleImageBlur}
                     placeholder="Image URL"
                   />
                   {errorMessages.image && (
