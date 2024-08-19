@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./AdminDashboard.css";
 import Navbar from "./Navbar";
-import defaultProfile from "../assets/defaultProfile.png";
 
 const AdminDashboard = () => {
   const [charityApplications, setCharityApplications] = useState([]);
