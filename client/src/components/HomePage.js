@@ -62,7 +62,7 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    fetch("/dashboard/common")
+    fetch("https://give-stream-app.onrender.com/dashboard/common")
       .then((response) => response.json())
       .then((data) => {
         animateCount(0, data.total_donations, 2000, (value) =>

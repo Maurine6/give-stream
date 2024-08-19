@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./AdminDashboard.css";
 import Navbar from "./Navbar";
-import defaultProfile from "../assets/defaultProfile.png";
 
 const AdminDashboard = () => {
   const [charityApplications, setCharityApplications] = useState([]);
@@ -26,7 +25,7 @@ const AdminDashboard = () => {
 
   const fetchCharityApplications = async () => {
     try {
-      const response = await fetch("/charity-applications?status=pending");
+      const response = await fetch("https://give-stream-app.onrender.com/charity-applications?status=pending");
       const data = await response.json();
       setCharityApplications(data);
     } catch (error) {
@@ -40,7 +39,7 @@ const AdminDashboard = () => {
 
   const fetchCharities = async () => {
     try {
-      const response = await fetch("/charities");
+      const response = await fetch("https://give-stream-app.onrender.com/charities");
       const data = await response.json();
       setCharities(data);
     } catch (error) {
@@ -54,7 +53,7 @@ const AdminDashboard = () => {
 
   const handleApprove = async (application) => {
     try {
-      const response = await fetch(`/charity-applications/${application.id}`, {
+      const response = await fetch(`https://give-stream-app.onrender.com/charity-applications/${application.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -98,7 +97,7 @@ const AdminDashboard = () => {
 
   const handleReject = async (application) => {
     try {
-      const response = await fetch(`/charity-applications/${application.id}`, {
+      const response = await fetch(`https://give-stream-app.onrender.com/charity-applications/${application.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -137,7 +136,7 @@ const AdminDashboard = () => {
 
   const handleDeleteCharity = async (charityId) => {
     try {
-      const response = await fetch(`/charities/${charityId}`, {
+      const response = await fetch(`https://give-stream-app.onrender.com/charities/${charityId}`, {
         method: "DELETE",
       });
 
