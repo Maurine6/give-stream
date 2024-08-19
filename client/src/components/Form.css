@@ -689,10 +689,9 @@
   background-color: transparent;
   font-size: 14px;
   color: red;
-  margin-top: -20px;
+  margin-top: 20px;
   margin-left: 450px;
   font-weight: 600;
-  display: none;
 }
 
 .reason {
