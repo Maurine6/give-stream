@@ -37,23 +37,23 @@ const CharityProfile = () => {
         if (!id) {
           throw new Error("Charity ID is missing");
         }
-        const response = await axios.get(`/charities/${id}`);
+        const response = await axios.get(`https://give-stream-app.onrender.com/charities/${id}`);
         setCharity(response.data);
         setTotalDonations(parseFloat(response.data.total_donations) || 0);
         setAnonymousDonations(
           parseFloat(response.data.anonymous_donations) || 0
         );
 
-        const storiesResponse = await axios.get(`/stories?charity_id=${id}`);
+        const storiesResponse = await axios.get(`https://give-stream-app.onrender.com/stories?charity_id=${id}`);
         setStories(storiesResponse.data || []);
 
         const beneficiariesResponse = await axios.get(
-          `/beneficiaries?charity_id=${id}`
+          `https://give-stream-app.onrender.com/beneficiaries?charity_id=${id}`
         );
         setBeneficiaries(beneficiariesResponse.data || []);
 
         const inventoryResponse = await axios.get(
-          `/inventory?charity_id=${id}`
+          `https://give-stream-app.onrender.com/inventory?charity_id=${id}`
         );
         setInventory(inventoryResponse.data || []);
       } catch (error) {
@@ -76,7 +76,7 @@ const CharityProfile = () => {
     try {
       if (newStory.id) {
         // Update existing story
-        const response = await axios.put(`/stories/${newStory.id}`, newStory);
+        const response = await axios.put(`https://give-stream-app.onrender.com/stories/${newStory.id}`, newStory);
         setStories(
           stories.map((story) =>
             story.id === newStory.id ? response.data : story
@@ -84,7 +84,7 @@ const CharityProfile = () => {
         );
       } else {
         // Create new story
-        const response = await axios.post("/stories", {
+        const response = await axios.post("https://give-stream-app.onrender.com/stories", {
           ...newStory,
           charity_id: id,
         });
@@ -108,7 +108,7 @@ const CharityProfile = () => {
       if (newBeneficiary.id) {
         // Update existing beneficiary
         const response = await axios.put(
-          `/beneficiaries/${newBeneficiary.id}`,
+          `https://give-stream-app.onrender.com/beneficiaries/${newBeneficiary.id}`,
           newBeneficiary
         );
         setBeneficiaries(
@@ -118,7 +118,7 @@ const CharityProfile = () => {
         );
       } else {
         // Create new beneficiary
-        const response = await axios.post("/beneficiaries", {
+        const response = await axios.post("https://give-stream-app.onrender.com/beneficiaries", {
           ...newBeneficiary,
           charity_id: id,
         });
@@ -151,7 +151,7 @@ const CharityProfile = () => {
       if (newInventoryItem.id) {
         // Update existing inventory item
         const response = await axios.put(
-          `/inventory/${newInventoryItem.id}`,
+          `https://give-stream-app.onrender.com/inventory/${newInventoryItem.id}`,
           data
         );
         setInventory(
@@ -161,7 +161,7 @@ const CharityProfile = () => {
         );
       } else {
         // Create new inventory item
-        const response = await axios.post("/inventory", data);
+        const response = await axios.post("https://give-stream-app.onrender.com/inventory", data);
         setInventory([...inventory, response.data]);
       }
       setNewInventoryItem({ item_name: "", quantity: 0 });
@@ -190,7 +190,7 @@ const CharityProfile = () => {
 
   const handleDeleteStory = async (storyId) => {
     try {
-      await axios.delete(`/stories/${storyId}`);
+      await axios.delete(`https://give-stream-app.onrender.com/stories/${storyId}`);
       setStories(stories.filter((story) => story.id !== storyId));
     } catch (error) {
       console.error("Error deleting story:", error);
@@ -208,7 +208,7 @@ const CharityProfile = () => {
 
   const handleDeleteBeneficiary = async (beneficiaryId) => {
     try {
-      await axios.delete(`/beneficiaries/${beneficiaryId}`);
+      await axios.delete(`https://give-stream-app.onrender.com/beneficiaries/${beneficiaryId}`);
       setBeneficiaries(beneficiaries.filter((b) => b.id !== beneficiaryId));
     } catch (error) {
       console.error("Error deleting beneficiary:", error);
@@ -226,7 +226,7 @@ const CharityProfile = () => {
 
   const handleDeleteInventoryItem = async (itemId) => {
     try {
-      await axios.delete(`/inventory/${itemId}`);
+      await axios.delete(`https://give-stream-app.onrender.com/inventory/${itemId}`);
       setInventory(inventory.filter((item) => item.id !== itemId));
     } catch (error) {
       console.error("Error deleting inventory item:", error);

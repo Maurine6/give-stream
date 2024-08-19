@@ -46,7 +46,7 @@ const NewDonorForm = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch("/donors", {
+      const response = await fetch("https://give-stream-app.onrender.com/donors", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

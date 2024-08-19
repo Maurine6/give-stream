@@ -17,7 +17,7 @@ const CharityList = ({ searchTerm = "" }) => {
   }, []);
 
   useEffect(() => {
-    fetch("/charities")
+    fetch("https://give-stream-app.onrender.com/charities")
       .then((response) => response.json())
       .then((data) => {
         const activeCharities = data.filter(

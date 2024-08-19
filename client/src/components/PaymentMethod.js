@@ -33,7 +33,7 @@ const PaymentMethodSelector = () => {
 
   const handleMethodClick = async (method) => {
     try {
-      const response = await axios.post("/payment-methods", {
+      const response = await axios.post("https://give-stream-app.onrender.com/payment-methods", {
         name: method.name,
         description: `Payment of ${amount} made via ${method.name}`,
       });
@@ -63,7 +63,7 @@ const PaymentMethodSelector = () => {
     setShowPaymentStatusModal(true);
     if (selectedMethod.name === "M-Pesa") {
       try {
-        const response = await axios.post("/mpesa-payment", {
+        const response = await axios.post("https://give-stream-app.onrender.com/mpesa-payment", {
           phone_number: inputValue,
           amount: amount,
         });

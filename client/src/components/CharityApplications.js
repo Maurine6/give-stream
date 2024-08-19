@@ -186,7 +186,7 @@ const CharityApplications = () => {
     }
 
     try {
-      const response = await fetch("/charity-applications", {
+      const response = await fetch("https://give-stream-app.onrender.com/charity-applications", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

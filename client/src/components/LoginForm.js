@@ -17,7 +17,7 @@ const LoginPage = () => {
     setError("");
 
     try {
-      const response = await axios.post("/login", {
+      const response = await axios.post("https://give-stream-app.onrender.com/login", {
         username,
         password,
       });

@@ -34,10 +34,10 @@ function CharityDetails() {
       }
     };
 
-    fetchData(`/charities/${id}`, setCharity, "charity details");
-    fetchData("/stories", setSuccessStories, "success stories");
-    fetchData("/donations", setDonations, "donations");
-    fetchData("/beneficiaries", setBeneficiaries, "beneficiaries");
+    fetchData(`https://give-stream-app.onrender.com/charities/${id}`, setCharity, "charity details");
+    fetchData("https://give-stream-app.onrender.com/stories", setSuccessStories, "success stories");
+    fetchData("https://give-stream-app.onrender.com/donations", setDonations, "donations");
+    fetchData("https://give-stream-app.onrender.com/beneficiaries", setBeneficiaries, "beneficiaries");
 
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);

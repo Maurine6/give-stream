@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 // API URL
-const apiUrl = "/inventories";
+const apiUrl = "https://give-stream-app.onrender.com/inventories";
 
 const Inventory = () => {
   const [inventoryItems, setInventoryItems] = useState([]);

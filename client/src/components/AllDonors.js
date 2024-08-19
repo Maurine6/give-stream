@@ -21,7 +21,7 @@ const DonorList = () => {
 
   const fetchDonors = async () => {
     try {
-      const response = await axios.get('/donors');
+      const response = await axios.get('https://give-stream-app.onrender.com/donors');
       setDonors(response.data);
     } catch (error) {
       console.error('Error fetching donors:', error);
@@ -30,7 +30,7 @@ const DonorList = () => {
 
   const deleteDonor = async (id) => {
     try {
-      await axios.delete(`/donors/${id}`);
+      await axios.delete(`https://give-stream-app.onrender.com/donors/${id}`);
       fetchDonors();
     } catch (error) {
       console.error('Error deleting donor:', error);
@@ -62,7 +62,7 @@ const DonorList = () => {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/donors/${editingDonor.id}`, editForm);
+      await axios.put(`https://give-stream-app.onrender.com/donors/${editingDonor.id}`, editForm);
       fetchDonors();
       setEditingDonor(null);
     } catch (error) {

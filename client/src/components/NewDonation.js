@@ -62,13 +62,13 @@ const DonationForm = ({ donorId, charityId, user }) => {
     }
 
     try {
-      const response = await axios.post("/donations", donationData);
+      const response = await axios.post("https://give-stream-app.onrender.com/donations", donationData);
       showMessage(
         `Donation submitted successfully! ${JSON.stringify(response.data)}`
       );
 
       if (donationData.is_recurring) {
-        const reminderResponse = await axios.post('/reminders', {
+        const reminderResponse = await axios.post('https://give-stream-app.onrender.com/reminders', {
           donor_id: donorId,
           frequency: donationData.recurring_frequency,
           amount: donationData.amount,

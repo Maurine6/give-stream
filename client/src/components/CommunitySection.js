@@ -44,7 +44,7 @@ const CommunitiesSection = () => {
 
   const fetchCommunities = async () => {
       try {
-        const response = await fetch(`/communities?search=${searchTerm}&category=${selectedCategory}`);
+        const response = await fetch(`https://give-stream-app.onrender.com/communities?search=${searchTerm}&category=${selectedCategory}`);
         console.log('Fetching communities with:', { searchTerm, selectedCategory });
         const data = await response.json();
         setCommunities(data);
@@ -55,7 +55,7 @@ const CommunitiesSection = () => {
     
   const handleCommunityClick = async (id) => {
     try {
-      const response = await fetch(`/communities/${id}`);
+      const response = await fetch(`https://give-stream-app.onrender.com/communities/${id}`);
       const data = await response.json();
       // Ensure impactStories and events are arrays
       data.impactStories = Array.isArray(data.impactStories)
@@ -70,7 +70,7 @@ const CommunitiesSection = () => {
 
   const joinCommunity = async (id) => {
     try {
-      const response = await fetch(`/communities/${id}`, {
+      const response = await fetch(`https://give-stream-app.onrender.com/communities/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -91,7 +91,7 @@ const CommunitiesSection = () => {
   const toggleCommunityMembership = async (id) => {
     const isJoined = joinedCommunities[id];
     try {
-      const response = await fetch(`/communities/${id}`, {
+      const response = await fetch(`https://give-stream-app.onrender.com/communities/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

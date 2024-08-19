@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const apiUrl = '/stories';
+const apiUrl = 'https://give-stream-app.onrender.com/stories';
 
 const formatStoryContent = (text) => {
     const wordsPerLine = 9;
